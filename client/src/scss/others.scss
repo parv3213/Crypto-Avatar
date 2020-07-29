@@ -1,0 +1,18 @@
+.jumbotron {
+	display: flex;
+	background-color: $white;
+	width: fit-content;
+	align-items: center;
+	justify-content: space-between;
+	.button {
+		margin: 0.25rem 1rem;
+	}
+	.info {
+		color: $red;
+		margin: 0.25rem 1rem;
+	}
+}
+
+.heading-sub {
+	color: $yellow;
+}

@@ -46,6 +46,7 @@ function App() {
 
 	return (
 		<div>
+			<Header account={account} />
 			<Body allKitties={allKitties} />
 		</div>
 	);
