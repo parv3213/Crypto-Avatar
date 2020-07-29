@@ -45,22 +45,33 @@ contract Cryptokitty is ERC721Token {
         uint256 maxGen = kitty1.generation > kitty2.generation
             ? kitty1.generation
             : kitty2.generation;
-        uint256 geneA = _random(4) > 1 ? kitty1.geneA : kitty2.geneA;
-        uint256 geneB = _random(4) > 1 ? kitty1.geneB : kitty2.geneA;
+        uint256 geneA = _random1(4) > 1 ? kitty1.geneA : kitty2.geneA;
+        uint256 geneB = _random2(4) > 1 ? kitty1.geneB : kitty2.geneA;
         kitties[nextId] = Kitty(nextId, maxGen + 1, geneA, geneB);
         _mintKitty(msg.sender);
     }
 
     function mint() external {
         require(msg.sender == admin, "only admin");
-        kitties[nextId] = Kitty(nextId, 1, _random(10), _random(10));
+        kitties[nextId] = Kitty(nextId, 1, _random1(10), _random2(10));
         _mintKitty(msg.sender);
     }
 
-    function _random(uint256 max) internal view returns (uint256) {
+    function _random1(uint256 max) internal view returns (uint256) {
         return
             uint256(
-                keccak256(abi.encodePacked(block.timestamp, block.difficulty))
+                keccak256(
+                    abi.encodePacked(block.timestamp, block.difficulty, now)
+                )
+            ) % max;
+    }
+
+    function _random2(uint256 max) internal view returns (uint256) {
+        return
+            uint256(
+                keccak256(
+                    abi.encodePacked(block.difficulty, block.timestamp, now)
+                )
             ) % max;
     }
 
