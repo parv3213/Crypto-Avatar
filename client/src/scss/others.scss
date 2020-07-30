@@ -4,17 +4,15 @@
 	width: fit-content;
 	align-items: center;
 	justify-content: space-between;
-	.button {
-		margin: 0.25rem 1rem;
-	}
+	width: 40%;
 	.info {
-		color: $red;
+		color: $purple;
 		margin: 0.25rem 1rem;
 	}
 }
 
 .heading-sub {
-	color: $yellow;
+	color: $cream;
 }
 
 .options {
@@ -23,6 +21,35 @@
 		width: 200px;
 	}
 	.input-width {
+		width: 10%;
+	}
+}
+.allAvatars {
+	width: 100%;
+	color: $lightCream;
+	table {
+		color: $white;
+	}
+	th {
+		color: $purple;
+	}
+	th,
+	td {
+		padding: 1rem 2rem;
+	}
+	.id {
+		width: 10%;
+	}
+	.generation {
+		width: 10%;
+	}
+	.gene-a {
+		width: 10%;
+	}
+	.gene-b {
+		width: 10%;
+	}
+	.avatar {
 		width: 10%;
 	}
 }

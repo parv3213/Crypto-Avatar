@@ -15,29 +15,28 @@ export default function AllKitties({ allKitties }) {
 		init();
 	}, [allKitties]);
 
-	// const loadAvatarsURL = () => {};
-
 	if (loading === true) {
 		return <div className="mx-3 my-3">Loading..</div>;
 	}
 
 	return (
-		<div className="mx-3 my-3">
-			<table>
+		<div className="my-3 allAvatars">
+			<h2>All Avatars</h2>
+			<table className="table table-hover  table-dark">
 				<thead>
 					<tr>
-						<th>Id</th>
-						<th>Generation</th>
-						<th>Gene A</th>
-						<th>Gene B</th>
-						<th>Avatar</th>
+						<th scope="col">Id</th>
+						<th scope="col">Generation</th>
+						<th scope="col">Gene A</th>
+						<th scope="col">Gene B</th>
+						<th scope="col">Avatar</th>
 					</tr>
 				</thead>
 				<tbody>
 					{allKitties.map((kitty, index) => {
 						return (
 							<tr key={index}>
-								<td>{kitty[0]}</td>
+								<th>{kitty[0]}</th>
 								<td>{kitty[1]}</td>
 								<td>{kitty[2]}</td>
 								<td>{kitty[3]}</td>
