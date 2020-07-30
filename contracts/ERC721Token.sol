@@ -304,7 +304,7 @@ contract ERC721Token is ERC721 {
 
     function _mint(uint256 _tokenId, address _owner) internal {
         require(idToOwner[_tokenId] == address(0), "This token already exits");
-        idToOwner[_tokenId] == _owner;
+        idToOwner[_tokenId] = _owner;
         ownerToTokenCount[_owner] += 1;
         emit Transfer(address(0), _owner, _tokenId);
     }

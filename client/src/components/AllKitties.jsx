@@ -2,13 +2,24 @@ import React, { useState, useEffect } from "react";
 
 export default function AllKitties({ allKitties }) {
 	const [kittyAvatarsURL, setKittyAvatarsURL] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		allKitties.forEach((kitty) => {
-			const kittyAvatarURL = `https://api.adorable.io/avatars/100/${kitty[2]}${kitty[3]}.png`;
-			setKittyAvatarsURL((kittyAvatarsURL) => [...kittyAvatarsURL, kittyAvatarURL]);
-		});
-	}, []);
+		const init = async () => {
+			allKitties.forEach((kitty) => {
+				const kittyAvatarURL = `https://api.adorable.io/avatars/100/${kitty[2]}${kitty[3]}.png`;
+				setKittyAvatarsURL((kittyAvatarsURL) => [...kittyAvatarsURL, kittyAvatarURL]);
+			});
+			setLoading(false);
+		};
+		init();
+	}, [allKitties]);
+
+	// const loadAvatarsURL = () => {};
+
+	if (loading === true) {
+		return <div className="mx-3 my-3">Loading..</div>;
+	}
 
 	return (
 		<div className="mx-3 my-3">
@@ -25,7 +36,7 @@ export default function AllKitties({ allKitties }) {
 				<tbody>
 					{allKitties.map((kitty, index) => {
 						return (
-							<tr>
+							<tr key={index}>
 								<td>{kitty[0]}</td>
 								<td>{kitty[1]}</td>
 								<td>{kitty[2]}</td>

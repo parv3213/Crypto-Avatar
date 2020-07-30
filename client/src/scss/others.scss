@@ -16,3 +16,13 @@
 .heading-sub {
 	color: $yellow;
 }
+
+.options {
+	color: $white;
+	button {
+		width: 200px;
+	}
+	.input-width {
+		width: 10%;
+	}
+}

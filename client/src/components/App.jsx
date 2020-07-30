@@ -14,6 +14,7 @@ function App() {
 	const [tokenSymbol, setTokenSymbol] = useState("");
 	const [tokenURI, setTokenURI] = useState("");
 	const [loading, setLoading] = useState(true);
+	const [reload, setReload] = useState(0);
 
 	useEffect(() => {
 		const init = async () => {
@@ -35,19 +36,35 @@ function App() {
 			setLoading(false);
 		};
 		init();
-	}, []);
+	}, [reload]);
 
-	// const initialize = async (cryptoKitty, account) => {
-	// 	await cryptoKitty.methods.mint().send({ from: account });
-	// 	await cryptoKitty.methods.mint().send({ from: account });
-	// };
+	useEffect(() => {
+		if (reload !== 0) {
+			const init = async () => {
+				const allKitties = await cryptoKitty.methods.getAllKitties().call();
+				setAllKitties(allKitties);
+				setLoading(false);
+			};
+			init();
+		}
+	}, [web3, account, cryptoKitty, reload]);
+
+	const mint = async () => {
+		setLoading(true);
+		await cryptoKitty.methods
+			.mint()
+			.send({ from: account })
+			.on("transactionHash", (hash) => {
+				setReload(reload + 1);
+			});
+	};
 
 	if (loading) return <h2 className="text-center">Loading...</h2>;
 
 	return (
 		<div>
 			<Header account={account} />
-			<Body allKitties={allKitties} />
+			<Body allKitties={allKitties} mint={mint} />
 		</div>
 	);
 }
