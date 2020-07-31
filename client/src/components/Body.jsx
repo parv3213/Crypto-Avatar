@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AllKitties from "./AllKitties";
 
 export default function Body({ allKitties, mint, getBalance, breed }) {
